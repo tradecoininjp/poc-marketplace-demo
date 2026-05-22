@@ -1,191 +1,231 @@
-# AI Local Business Delivery Platform
+# MarketFlow
 
-A scalable AI-assisted frontend platform for delivering high-quality local business websites from a single reusable codebase.
+A production-ready Marketplace + Booking MVP built to validate demand, onboard providers, and launch a credible SaaS product fast.
 
-This repository is designed to combine:
+This project is not a tutorial scaffold.
+It is a frontend-first SaaS MVP designed to look, navigate, and scale like a real product.
 
-- Client-facing production quality
-- Configuration-driven business switching
-- Multi-project Vercel deployment from one repository
-- Fast, repeatable delivery for international teams
+In a single codebase, it already covers the core customer journey:
 
-## Live Demos
+- discover listings
+- evaluate providers
+- open a service detail page
+- complete a booking or inquiry flow
+- access authentication screens
+- review admin-side management UI
 
-| Preset | Business Name | Category | URL |
-|---|---|---|---|
-| barber | The Garrison Grooming Co. | Barber Shop | https://garrisongrooming-demo.vercel.app/ |
-| gym | Forge Elite Gym | Gym / Fitness | https://ironcoregym-demo.vercel.app/ |
-| plumbing | RapidFlow Plumbing | Plumbing Service | https://rapidplumbing-demo.vercel.app/ |
-| cleaning | Pristine Clean Services | Cleaning Service | https://pristineclean-demo.vercel.app/ |
+For clients building a marketplace business, this represents the product foundation, not just a visual prototype.
 
-## Visual Showcase
+## Live Demo
 
-### Desktop Preview
-
-![Desktop Preview](public/portfolio/desktop-preview.svg)
-
-### Mobile Preview
-
-![Mobile Preview](public/portfolio/mobile-preview.svg)
-
-### Responsive Preview
-
-![Responsive Preview](public/portfolio/responsive-preview.svg)
-
-### Hero Section Preview
-
-![Hero Preview](public/portfolio/hero-preview.svg)
-
-### CTA Section Preview
-
-![CTA Preview](public/portfolio/cta-preview.svg)
+Vercel Demo: `https://poc-marketplace-demo.vercel.app`
 
 ## Project Overview
 
-This platform is built for agencies and product teams that deliver many local business sites. Instead of rebuilding from scratch, it reuses a stable section system and configuration layer to scale delivery.
+MarketFlow is a Marketplace + Booking Platform MVP for service-based businesses.
 
-Core value:
+It is built to support the main flows a real product needs at the earliest launch stage:
 
-- Lower implementation cost per client
-- Consistent quality across projects
-- Minimal component rewrites when adding new business types
-- Standardized deployment workflow for operational efficiency
+- marketplace browsing
+- listing discovery
+- search and filter UI
+- provider detail pages
+- booking and inquiry submission flow
+- authentication experience
+- internal admin dashboard UI
+
+The current version is frontend-only with mock data, but the architecture is intentionally structured for backend integration. Listings, product UI, and page composition are already separated cleanly enough to connect APIs, authentication, payments, and admin operations without rewriting the frontend foundation.
+
+## Key Features
+
+### Marketplace Browsing System
+- Dedicated listings index page with responsive card grid
+- Reusable listing card architecture
+- Category and keyword filter UI ready for API wiring
+- Clean information hierarchy for browsing and comparison
+
+### Listing Detail Experience
+- Dedicated dynamic listing detail route per provider
+- Service image, location, category, pricing, and description presentation
+- Clear booking CTA for conversion-focused navigation
+
+### Booking / Inquiry Flow
+- Dedicated booking page per listing
+- Mock booking form with success state
+- UX designed to transition naturally into real backend submission later
+
+### Authentication UI
+- Separate login and registration pages
+- Provider-oriented registration flow
+- Clean auth screens ready for real identity integration
+
+### Admin Dashboard
+- Mock stats cards for platform health metrics
+- Listings management table using shared data layer
+- Structure suitable for future moderation, analytics, and provider ops
+
+### Responsive SaaS UI
+- Mobile-first layouts across all primary screens
+- Clear CTA hierarchy and touch-friendly controls
+- Modern visual language aligned with startup-grade SaaS products
+
+## Tech Stack
+
+- Next.js App Router
+- TypeScript
+- TailwindCSS
+- React 19
+- Vercel-ready deployment model
 
 ## Architecture Overview
 
-- Next.js App Router for modern rendering and routing
-- TypeScript for safe, maintainable business configuration
-- TailwindCSS for reusable UI patterns
-- Preset-driven content, SEO, and branding without layout rewrites
-
-Main directories:
+The project follows a clean, scalable frontend architecture designed for iterative MVP delivery.
 
 ```bash
-src/app
-src/components
-src/sections
-src/constants
-src/content
-src/lib
-public/images
-public/portfolio
+src/
+  app/
+  components/
+  data/
+  lib/
+  types/
 ```
 
-## Preset System
+### Why this structure matters
+- `app/` owns routing and page-level composition
+- `components/` contains reusable UI and feature components
+- `data/` holds mock datasets and UI copy outside component files
+- `lib/` contains formatting and URL helpers
+- `types/` defines shared TypeScript contracts for future API integration
 
-The active preset is selected by environment variable:
+This keeps the UI layer clean, minimizes coupling, and makes it straightforward to replace mock data with live API responses.
 
-```dotenv
-NEXT_PUBLIC_BUSINESS_PRESET=barber
-```
+## Core Modules
 
-Available presets:
+### Marketplace Module
+- Landing page with featured listings
+- Listings page with search and category filter UI
+- Dynamic listing detail pages
 
-- barber
-- gym
-- plumbing
-- cleaning
+### Booking Module
+- Dedicated booking route per listing
+- Form-based conversion flow with success state
+- Ready to connect to booking APIs, CRM workflows, or payment steps
 
-Resolver behavior:
+### Auth UI Module
+- Login page
+- Registration page
+- Designed for future integration with Clerk, Auth.js, Supabase Auth, Firebase Auth, or custom APIs
 
-- Uses `src/lib/preset-resolver.ts`
-- Falls back safely to `barber` if the value is invalid
-- Switches business details, services, testimonials, SEO, and branding consistently
+### Admin UI Module
+- Dashboard overview cards
+- Listings management table
+- Suitable starting point for internal tools and provider operations
 
-## Vercel Deployment Pattern
+## Data Layer
 
-Create multiple Vercel projects from the same repository, each with a different preset value.
+All current frontend data is driven from mock files in the data layer rather than hardcoded directly inside UI components.
 
-Example mapping:
+Current sources include:
 
-- https://garrisongrooming-demo.vercel.app/ -> `NEXT_PUBLIC_BUSINESS_PRESET=barber`
-- https://ironcoregym-demo.vercel.app/ -> `NEXT_PUBLIC_BUSINESS_PRESET=gym`
-- https://rapidplumbing-demo.vercel.app/ -> `NEXT_PUBLIC_BUSINESS_PRESET=plumbing`
-- https://pristineclean-demo.vercel.app/ -> `NEXT_PUBLIC_BUSINESS_PRESET=cleaning`
+- listing dataset
+- platform configuration
+- reusable UI labels and content
 
-Result:
+This approach provides two immediate advantages:
 
-- Shared codebase
-- Independent deployment URLs
-- Config-only business switching
+1. The MVP remains easy to iterate on during client review cycles.
+2. Backend integration later becomes a replacement of data sources rather than a UI rewrite.
 
-## SEO and Social Preview
+## UI / UX Principles
 
-Each preset dynamically updates:
+The product is designed with practical SaaS UX priorities in mind:
 
-- Title and description
-- Open Graph image
-- Favicon and icons
-- Canonical URL
-- Business contact metadata
+- fast comprehension above decorative complexity
+- clear navigation between browse, detail, and booking states
+- strong CTA placement
+- responsive layouts that feel credible on desktop and mobile
+- reusable visual system instead of one-off page styling
 
-Related implementation:
+The result is intentionally polished enough for investor demos, client walkthroughs, and early user testing.
 
-- `src/lib/seo.ts`
-- `src/content/images.ts`
-- `src/constants/presets.ts`
+## Performance Considerations
 
-## Mobile Experience Quality
+- Uses App Router for efficient page composition
+- Uses server-rendered routes where appropriate for leaner client bundles
+- Keeps heavy data local and structured for easy migration to APIs
+- Uses optimized static assets for listing previews and social sharing
+- Avoids unnecessary dependency weight and UI library overhead
 
-The platform keeps mobile conversion quality as a default:
+## Why This Project Was Built
 
-- Touch-friendly CTA controls
-- Persistent mobile contact visibility
-- Responsive typography and spacing
-- Optimized image loading behavior
-- Consistent section rhythm
+Most marketplace MVPs fail early because teams either:
 
-## AI-Assisted Delivery Workflow
+- overbuild backend complexity before validating the product, or
+- underbuild the frontend and end up with a UI that does not inspire trust
 
-Recommended workflow:
+This project was built to solve that gap.
 
-1. Choose preset
-2. Update business copy and contact details
-3. Replace branding assets, images, and OG files
-4. Validate mobile experience
-5. Deploy immediately on Vercel
+It gives product teams, founders, and clients a credible SaaS frontend that already covers a significant portion of the real product experience:
 
-This enables fast, repeatable client delivery.
+- core marketplace discovery
+- booking funnel structure
+- provider onboarding surface
+- internal dashboard direction
+- scalable frontend architecture
 
-## Technology Stack
+In practical terms, it is the kind of MVP foundation that allows a client to feel that a meaningful portion of the product is already de-risked.
 
-- Next.js (App Router)
-- TypeScript
-- TailwindCSS
-- Vercel
-- GitHub Copilot
+## Future Enhancements
 
-## Setup
+This MVP is intentionally positioned for the next stage of product development.
+
+High-value next steps include:
+
+- API-backed listings and search
+- real booking submission and availability management
+- user authentication and role-based access
+- provider onboarding workflows
+- payment integration
+- saved favorites and account dashboards
+- admin moderation tools
+- analytics and funnel instrumentation
+- notifications and messaging
+
+## Developer Notes
+
+This codebase is designed to be extended, not replaced.
+
+The frontend contracts, route structure, reusable components, and data separation are intentionally aligned with real SaaS evolution:
+
+- replace mock data with API data
+- connect forms to real endpoints
+- attach auth providers without rebuilding screens
+- introduce database-backed admin functions incrementally
+- continue shipping without architecture churn
+
+That is the core value of this MVP: it is already organized like a product that expects to grow.
+
+## Getting Started
 
 ```bash
 npm install
-cp .env.example .env.local
-```
-
-Configure `.env.local`:
-
-```dotenv
-NEXT_PUBLIC_BUSINESS_PRESET=barber
-```
-
-Start development:
-
-```bash
 npm run dev
 ```
 
-Validate production build:
+Production build check:
 
 ```bash
 npm run build
 ```
 
-## Operations Documents
+## Deployment
 
-- [Delivery Playbook](docs/delivery-playbook.md)
-- [Vercel Multi-Preset Deployment Guide](docs/vercel-multi-preset-deployment.md)
-- [Portfolio Operations Guide](docs/portfolio-operations.md)
+The project is ready for Vercel deployment.
 
-## License
+Standard flow:
 
-Private project for portfolio and delivery operations.
+1. Push repository to GitHub
+2. Import into Vercel
+3. Deploy
+4. Replace mock/demo branding if needed
+5. Continue with backend/API integration in the next phase
