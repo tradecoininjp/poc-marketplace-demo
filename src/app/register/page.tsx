@@ -1,6 +1,7 @@
 import { AuthForm } from "@/components/marketplace/auth-form";
 import { MarketplaceShell } from "@/components/marketplace/marketplace-shell";
 import { platformConfig } from "@/data/platform";
+import { uiContent } from "@/data/ui";
 
 export default function RegisterPage() {
   return (
@@ -9,9 +10,9 @@ export default function RegisterPage() {
         <AuthForm
           title={platformConfig.auth.registerTitle}
           subtitle={platformConfig.auth.registerSubtitle}
-          submitLabel="Create Account"
-          secondaryText="Already have an account?"
-          secondaryLinkLabel="Login"
+          submitLabel={uiContent.pages.auth.register.submitLabel}
+          secondaryText={uiContent.pages.auth.register.secondaryText}
+          secondaryLinkLabel={uiContent.pages.auth.register.secondaryLinkLabel}
           secondaryHref="/login"
           includeBusinessName
         />

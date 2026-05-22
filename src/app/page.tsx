@@ -3,6 +3,7 @@ import { ListingCard } from "@/components/marketplace/listing-card";
 import { MarketplaceShell } from "@/components/marketplace/marketplace-shell";
 import { SectionHeading } from "@/components/marketplace/section-heading";
 import { platformConfig } from "@/data/platform";
+import { uiContent } from "@/data/ui";
 import { getFeaturedListings } from "@/lib/marketplace";
 
 export default function Home() {
@@ -33,7 +34,7 @@ export default function Home() {
           </div>
         </div>
         <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-300">Why teams use this MVP</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-300">{uiContent.pages.home.whyEyebrow}</p>
           <ul className="mt-4 space-y-3 text-sm text-slate-300">
             {platformConfig.listingHighlights.map((item) => (
               <li key={item} className="flex items-start gap-3">
@@ -47,9 +48,9 @@ export default function Home() {
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Featured Listings"
-          title="Preview trusted service providers"
-          subtitle="A quick look at high-demand listings powered by mock marketplace data."
+          eyebrow={uiContent.pages.home.featured.eyebrow}
+          title={uiContent.pages.home.featured.title}
+          subtitle={uiContent.pages.home.featured.subtitle}
         />
         <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {featuredListings.map((listing) => (
